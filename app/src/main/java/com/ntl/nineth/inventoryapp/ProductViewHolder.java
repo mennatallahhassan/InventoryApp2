@@ -2,6 +2,7 @@ package com.ntl.nineth.inventoryapp;
 
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -14,6 +15,7 @@ public class ProductViewHolder {
     TextView price;
     TextView current_quantity;
     ImageButton sale_button;
+    ImageView picture;
 
 
     public ProductViewHolder(View itemView) {
@@ -21,5 +23,6 @@ public class ProductViewHolder {
         this.price = (TextView) itemView.findViewById(R.id.price);
         this.current_quantity = (TextView) itemView.findViewById(R.id.current_quantity);
         this.sale_button = (ImageButton) itemView.findViewById(R.id.sale_button);
+        this.picture = (ImageView) itemView.findViewById(R.id.picture1);
     }
 }
