@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     ArrayList<Product> productArrayList = new ArrayList<>();
     Product product;
-    ///
+    ///meeting
     ProductAdapter productAdapter;
     ListView listView;
     DBHandler dbHandler;
