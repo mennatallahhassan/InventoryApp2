@@ -68,9 +68,9 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (product_name.getText().length() > 0) {
-                    if (Integer.parseInt(price.getText().toString()) > 0 && !TextUtils.isEmpty(price.getText())) {
-                        if (Integer.parseInt(quantity.getText().toString()) > 0 && !TextUtils.isEmpty(quantity.getText())) {
-                            if (Long.parseLong(supplierContact.getText().toString()) > 0 && !TextUtils.isEmpty(supplierContact.getText())) {
+                    if (!price.getText().toString().isEmpty()) {
+                        if (!quantity.getText().toString().isEmpty() ) {
+                            if (!supplierContact.getText().toString().isEmpty()) {
                                 if (path != null) {
                                     DBHandler dbHandler = new DBHandler(getApplicationContext());
                                     Product product = new Product();
