@@ -39,7 +39,7 @@ public class ProductAdapter extends ArrayAdapter {
         }
         if (productArrayList.size() > 0) {
             final Product product = productArrayList.get(position);
-            viewHolder.picture.setImageURI(Uri.parse("content://media" + product.getPicture()));
+            viewHolder.picture.setImageURI(Uri.parse("" + product.getPicture()));
             viewHolder.product_name.setText("" + product.getProduct_Name().toString());
             viewHolder.price.setText("Price: " + product.getPrice() + " L.E");
             viewHolder.current_quantity.setText("Quantity: " + product.getCurrent_quantity());

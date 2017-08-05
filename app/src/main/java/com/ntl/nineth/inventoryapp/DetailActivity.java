@@ -35,7 +35,7 @@ public class DetailActivity extends AppCompatActivity {
         supplierContact.setText("Supplier Contact: " + product.getSupplierMobile());
 
         ImageView picture = (ImageView) findViewById(R.id.picture2);
-        picture.setImageURI(Uri.parse("content://media" + product.getPicture()));
+        picture.setImageURI(Uri.parse("" + product.getPicture()));
 
         Button deleteBtn = (Button) findViewById(R.id.delete_btn);
         deleteBtn.setOnClickListener(new View.OnClickListener() {

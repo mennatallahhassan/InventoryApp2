@@ -28,7 +28,7 @@ public class AddProductActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             imagePathURI = data.getData();
             pic.setImageURI(imagePathURI);
-            path = imagePathURI.getPath();
+            path = imagePathURI.toString();
             //String path = Uri.parse(imagePathURI);
         }
     }
