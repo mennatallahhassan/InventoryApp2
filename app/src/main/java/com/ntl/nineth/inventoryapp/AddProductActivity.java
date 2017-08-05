@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,15 @@ public class AddProductActivity extends AppCompatActivity {
             pic.setImageURI(imagePathURI);
             path = imagePathURI.getPath();
             //String path = Uri.parse(imagePathURI);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        pic.setVisibility(View.GONE);
+        if (path != null) {
+            pic.setVisibility(View.VISIBLE);
         }
     }
 
@@ -58,9 +68,9 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (product_name.getText().length() > 0) {
-                    if (Integer.parseInt(price.getText().toString()) > 0) {
-                        if (Integer.parseInt(quantity.getText().toString()) > 0) {
-                            if (Long.parseLong(supplierContact.getText().toString()) > 0) {
+                    if (Integer.parseInt(price.getText().toString()) > 0 && !TextUtils.isEmpty(price.getText())) {
+                        if (Integer.parseInt(quantity.getText().toString()) > 0 && !TextUtils.isEmpty(quantity.getText())) {
+                            if (Long.parseLong(supplierContact.getText().toString()) > 0 && !TextUtils.isEmpty(supplierContact.getText())) {
                                 if (path != null) {
                                     DBHandler dbHandler = new DBHandler(getApplicationContext());
                                     Product product = new Product();
@@ -96,4 +106,5 @@ public class AddProductActivity extends AppCompatActivity {
         });
 
     }
+
 }

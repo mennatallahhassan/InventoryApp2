@@ -3,15 +3,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="#fff"
     android:orientation="horizontal">
 
-    <!--<ImageView-->
-    <!--android:id="@+id/picture"-->
-    <!--android:layout_width="90dp"-->
-    <!--android:layout_height="80dp"-->
-    <!--android:layout_marginLeft="20dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:background="@color/colorAccent" />-->
+    <ImageView
+        android:id="@+id/picture1"
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerInside" />
 
 
     <LinearLayout
@@ -66,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#fff"
-                android:src="@mipmap/minus" />
+                android:padding="5dp"
+                android:src="@mipmap/reduce" />
         </LinearLayout>
 
     </LinearLayout>

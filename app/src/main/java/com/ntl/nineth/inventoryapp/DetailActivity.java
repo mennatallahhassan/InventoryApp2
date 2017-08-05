@@ -1,21 +1,19 @@
 package com.ntl.nineth.inventoryapp;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
-
+    // TextView current_quantity2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView price2 = (TextView) findViewById(R.id.price2);
         price2.setText("Price: " + product.getPrice() + " L.E");
 
-        TextView current_quantity2 = (TextView) findViewById(R.id.current_quantity2);
+        final TextView current_quantity2 = (TextView) findViewById(R.id.current_quantity2);
         current_quantity2.setText("Quantity: " + product.getCurrent_quantity());
 
         TextView supplierContact = (TextView) findViewById(R.id.Supplier_Contact);
@@ -74,21 +72,44 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + product.getSupplierMobile()));
-                if (ActivityCompat.checkSelfPermission(DetailActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
+                String supplierPhone = product.getSupplierMobile();
+                Uri call = Uri.parse("tel: " + supplierPhone);
+                Intent phone = new Intent(Intent.ACTION_DIAL, call);
+                startActivity(phone);
+            }
+        });
+        ImageButton increaseBtn = (ImageButton) findViewById(R.id.add_button2);
+        increaseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (product.getCurrent_quantity() < 9999) {
+                    int increasedQuantity = product.getCurrent_quantity() + 1;
+                    product.setCurrent_quantity(increasedQuantity);
+                    current_quantity2.setText("Quantity: " + increasedQuantity);
+
+                    DBHandler dbHandler = new DBHandler(getApplicationContext());
+                    dbHandler.updateProduct(product.getId(), increasedQuantity);
+
                 }
-                startActivity(intent);
             }
         });
 
+
+        ImageButton decreaseBtn = (ImageButton) findViewById(R.id.reduce_button2);
+        decreaseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (product.getCurrent_quantity() > 0) {
+                    int decreasedQuantity = product.getCurrent_quantity() - 1;
+                    product.setCurrent_quantity(decreasedQuantity);
+                    current_quantity2.setText("Quantity: " + decreasedQuantity);
+
+                    DBHandler dbHandler = new DBHandler(getApplicationContext());
+                    dbHandler.updateProduct(product.getId(), decreasedQuantity);
+
+                }
+            }
+        });
     }
 }

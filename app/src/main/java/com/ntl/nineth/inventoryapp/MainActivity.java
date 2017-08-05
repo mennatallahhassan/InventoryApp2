@@ -14,23 +14,20 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     ArrayList<Product> productArrayList = new ArrayList<>();
     Product product;
-    ///meeting
     ProductAdapter productAdapter;
     ListView listView;
     DBHandler dbHandler;
+    TextView noContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbHandler = new DBHandler(getApplicationContext());
+        noContent = (TextView) findViewById(R.id.noContent);
 
         if (productArrayList.size() > 0) {
-            TextView noContent = (TextView) findViewById(R.id.noContent);
-            noContent.setVisibility(View.GONE);
-            noContent.setVisibility(View.INVISIBLE);
             productArrayList = dbHandler.getAllProduct();
-
             productAdapter = new ProductAdapter(getApplicationContext(), R.layout.row_item, productArrayList);
 
             listView = (ListView) findViewById(R.id.list_view);
@@ -67,12 +64,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         TextView noContent = (TextView) findViewById(R.id.noContent);
-        noContent.setVisibility(View.GONE);
-        noContent.setVisibility(View.INVISIBLE);
+        noContent.setVisibility(View.VISIBLE);
         productArrayList = dbHandler.getAllProduct();
         if (productArrayList.size() > 0) {
 
-
+            noContent.setVisibility(View.GONE);
             productAdapter = new ProductAdapter(getApplicationContext(), R.layout.row_item, productArrayList);
 
             listView = (ListView) findViewById(R.id.list_view);

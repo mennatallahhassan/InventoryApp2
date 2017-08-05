@@ -44,7 +44,8 @@ public class DBHandler extends SQLiteOpenHelper {
         id = db.insert(DBContract.Product_Table.Table_Name, null, contentValues);
         return id;
     }
-   public ArrayList<Product> getAllProduct() {
+
+    public ArrayList<Product> getAllProduct() {
         ArrayList<Product> arrayList = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -71,5 +72,11 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateProduct(int id, int newQuantity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String update = "Update " + DBContract.Product_Table.Table_Name + " set " + DBContract.Product_Table.Current_Quantity + " = " + newQuantity + " where id = " + id;
+        db.execSQL(update);
+        db.close();
+    }
 
 }
